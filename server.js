@@ -3,6 +3,7 @@ const routes = require('./controllers');
 const sequelize = require('./config/connection');
 /////allow us to use public folder/css/js
 const path = require('path');
+const helpers = require('./utils/helpers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -35,7 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 //handlebars stuff
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({});
+const hbs = exphbs.create({helpers});
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
